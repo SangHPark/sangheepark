@@ -1,0 +1,54 @@
+<apex:page controller="AccountSearchRemoting">
+    <style>
+        tr.dataRow {
+            background-color:white;
+        }
+        tr.dataRow:hover {
+            background-color:#e3f3ff;
+        }
+    </style>
+    <script>
+        handleButtonClick = function() {
+            var searchTerm = document.getElementById("searchField").value;
+            alert(searchTerm);  
+            Visualforce.remoting.Manager.invokeAction( '{!$RemoteAction.AccountSearchRemoting.searchAccounts}', searchTerm, handleResult );
+        };
+    
+        handleResult = function(results, event) {
+            if(event.status) {
+                if(event.type === "exception") {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                } else {
+                    var container = document.getElementById("resultsArea"), html=[];  
+                    html.push("<tr class='headerRow'>");
+                    html.push("<td class='headerRow'>Account Name</td>"); 
+                    html.push("<td class='headerRow'>Account Number</td>"); 
+                    html.push("</tr>");
+                    for (var i=0, j=results.length; i<j; i++) {
+                        html.push("<tr class='dataRow'>");
+                        html.push("<td class='dataCell'>" + results[i].Name + "</td>");
+                        html.push("<td class='dataCell'>" + results[i].Number + "</td>");
+                        html.push("</tr">);
+                    }
+                    container.innterHTML = html.join("");
+                }
+           }
+        }
+    
+    </script>
+    
+    <apex:pageBlock title="Search Result"> 
+        <apex:pageBlockButtons location="top">
+            <input id="searchField" type="text"/>        
+            <button type="button" onclick="handleButtonClick();">Search Accounts with Remoting</button>
+        </apex:pageBlockButtons>
+        
+        <div id="responseErrors"></div>
+         
+        <table class="list" cellpadding="0" cellspacing="0">
+            <thead></thead>
+            <tfoot></tfoot>
+            <tbody id="resultsArea"></tbody>
+        </table>
+    </apex:pageBlock>
+</apex:page>

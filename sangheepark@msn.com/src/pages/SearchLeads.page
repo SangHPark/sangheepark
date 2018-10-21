@@ -1,0 +1,32 @@
+<apex:page standardController="Lead" extensions="SearchLeads_CX">
+  <apex:form >
+    <apex:pageMessages id="msgs"/>  
+    <apex:pageBlock title="Search Leads">
+        
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputText >Search Text:</apex:outputText>
+                <apex:panelGroup >
+                    <apex:inputText id="searchText" value="{!searchText}"/>
+                    <apex:commandButton value="Search" action="{!Search}" />
+                </apex:panelGroup>
+            </apex:pageBlockSectionItem>
+            
+        </apex:pageBlockSection>
+      
+        <apex:outputPanel id="results">
+            <apex:pageBlockTable value="{!results}" var="lead" rendered="{!NOT(ISNULL(results))}">
+                <apex:column headerValue="Name">
+                  <apex:outputLink value="/{!lead.id}">{!lead.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column value="{!lead.Company}"/>
+                <apex:column value="{!lead.Email}"/>
+                <apex:column value="{!lead.Phone}"/>
+            </apex:pageBlockTable>
+            <apex:outputText value="No leads found matching criteria" rendered="{!AND(NOT(matches), searched)}" />
+        </apex:outputPanel>
+        
+    </apex:pageBlock>
+    
+  </apex:form>
+</apex:page>

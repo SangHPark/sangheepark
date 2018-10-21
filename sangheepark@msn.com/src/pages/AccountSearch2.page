@@ -1,0 +1,42 @@
+<apex:page controller="AccountSearchController2" tabStyle="Account">
+    <apex:form >
+    
+        <apex:pageBlock title="Search Result">
+            <apex:pageMessages />
+            <apex:pageBlockButtons location="top">
+                <apex:inputText value="{!searchstring}" label="Input"/>&nbsp;
+                <apex:commandButton value="Search Accounts" action="{!search}"/>
+                <apex:commandButton value="<<" title="First" action="{!setCon.First}" rendered="{!setCon.hasPrevious}"/>
+                <apex:commandButton value="<"  title="Previous" action="{!setCon.Previous}" rendered="{!setCon.hasPrevious}"/>
+                <apex:commandButton value=">" title="Next" action="{!setCon.Next}" rendered="{!setCon.hasNext}"/>
+                <apex:commandButton value=">>" title="Last" action="{!setCon.Last}" rendered="{!setCon.hasNext}"/>                                                
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection title="Results" collapsible="true" rendered="{!setCon.hasPrevious || setCon.hasNext}">
+ <!--           
+                <apex:outputText value="Total found: {!setCon.resultSize}"></apex:outputText>
+                <apex:outputText value="Page Number: {!setCon.pageNumber}"></apex:outputText>
+ -->
+                 {!(setCon.pageNumber * setCon.pageSize) + 1 - setCon.pageSize}
+                 through
+                 {!IF((setCon.PageNumber * setCon.pageSize) > setCon.resultSize, setCon.resultSize, (setCon.pageNumber * setCon.pageSize))}
+                 of {!setCon.resultSize}
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!acc}" var="a">
+                <apex:column headervalue="Name">
+                    <apex:outputLink value="/{!a.id}">{!a.Name}</apex:outputLink>
+                </apex:column>/>
+                <apex:column headervalue="Account Number" value="{!a.accountnumber}"/>
+                <apex:column headervalue="Industry" value="{!a.industry}"/>                    
+                <apex:column headervalue="Phone" value="{!a.phone}"/>                       
+                <apex:column headervalue="Web Site" value="{!a.website}"/>      
+            
+            
+            
+            </apex:pageBlockTable>
+            
+            
+            
+        </apex:pageBlock>
+</apex:form>    
+</apex:page>

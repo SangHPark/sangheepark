@@ -1,0 +1,28 @@
+<apex:page tabStyle="Opportunity" controller="ListOpportunitiesController" contentType="application/x-excel#Opportunities.xls">
+        <apex:pageBlock title="Opportunities"> 
+            <apex:pageBlockTable id="oppList" value="{!opps}" var="opp">
+                <apex:column >
+                    <apex:outputLink value="/{!opp.Id}">{!opp.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column >
+                    <apex:outputField value="{!opp.amount}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:outputField value="{!opp.stageName}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:outputField value="{!opp.Type}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:outputField value="{!opp.Probability}"/>
+                </apex:column>                
+                <apex:column >
+                    <apex:outputField value="{!opp.closeDate}"/>
+                </apex:column>                
+                <apex:column >
+                    <apex:outputField value="{!opp.ExpectedRevenue}"/>
+                </apex:column>                
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+   
+</apex:page>

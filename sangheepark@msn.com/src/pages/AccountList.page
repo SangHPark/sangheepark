@@ -1,0 +1,16 @@
+<apex:page standardController="Account" recordSetVar="accounts">
+    <apex:pageBlock >
+        <apex:repeat value="{!accounts}" var="a">
+            <li>
+                <apex:outputLink value="/{!a.id}">
+                    {!a.Name}
+                </apex:outputLink>
+                <!--
+<a href= "{!LEFT($CurrentPage.URL,FIND('/',$CurrentPage.URL,9))}{!a.id}">Detail</a>
+-->
+                
+            </li>
+            
+        </apex:repeat>
+    </apex:pageBlock>
+</apex:page>

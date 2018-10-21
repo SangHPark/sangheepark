@@ -1,0 +1,44 @@
+<apex:page controller="AccountSearchController" tabStyle="Account">
+    <apex:form >
+    
+        <script>
+			handleButtonClick = function() {
+<!--                alert(document.getElementById('searchField').value); -->
+              	searchAccounts(document.getElementById('searchField').value);  
+                
+            };
+        </script>
+
+    	<apex:pageBlock title="Search Result">
+            <apex:pageMessages />
+            <apex:actionStatus id="searchNotify" startText="Working.." stopText=" "></apex:actionStatus>
+            <apex:actionFunction name="searchAccounts" action="{!search}" reRender="resultArea" status="searchNotify">
+                <apex:param name="searchString" assignTo="{!searchString}" value=""/>
+            </apex:actionFunction>
+            
+            <apex:pageBlockButtons location="top">
+                <input id="searchField" type="text" />
+                <button type="button" onclick="handleButtonClick();">
+                    Search Accounts with ActionFunction
+                </button>
+                
+            	<apex:inputText value="{!searchstring}" label="Input"/>&nbsp;
+                <apex:commandButton value="Search Accounts" action="{!search}"/>
+            </apex:pageBlockButtons>
+            
+            <apex:outputPanel id="resultArea">
+                <apex:pageBlockTable value="{!acc}" var="a">
+                    <apex:column headervalue="Name">
+                        <apex:outputLink value="/{!a.id}">{!a.Name}</apex:outputLink>
+                    </apex:column>/>
+                    <apex:column headervalue="Account Number" value="{!a.accountnumber}"/>
+                    <apex:column headervalue="Industry" value="{!a.industry}"/>                    
+                    <apex:column headervalue="Phone" value="{!a.phone}"/>		                
+                    <apex:column headervalue="Web Site" value="{!a.website}"/>		
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+            
+            
+        </apex:pageBlock>
+</apex:form>    
+</apex:page>

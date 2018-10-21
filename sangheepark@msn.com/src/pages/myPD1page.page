@@ -1,0 +1,4 @@
+<apex:page controller="myPD1class">
+    <apex:outputText >This is test page for platform developer</apex:outputText>
+    {!cString},{!StringMethod1},{!StringMethod2},{!cString}
+</apex:page>

@@ -1,0 +1,30 @@
+<apex:page >
+    <script> 
+    <apex:includeScript value="/support/console/26.0/integration.js"/>
+
+        // Logout Shortcut
+        var logoutEventHandler = function() {
+            top.location = '/secur/logout.jsp';
+        }
+        sforce.console.addEventListener('customShortcut.Logout', logoutEventHandler);            
+    
+        // If the component is hidden, display it. Otherwise hide it.
+        var checkWindowVisibility = function setWindowVisibility(result) {
+            if (result.hidden) {
+                sforce.console.setCustomConsoleComponentWindowVisible(true);                    
+            } else {
+                sforce.console.setCustomConsoleComponentWindowVisible(false);                    
+            }
+        };
+        
+        // Is the component visible?
+        var toggleEventHandler = function() {
+            sforce.console.isCustomConsoleComponentWindowHidden(setWindowVisibility);
+        }
+        // Add an event listener for the keyboard shortcut
+        sforce.console.addEventListener('customShortcut.ToggleNotifications', toggleEventHandler);  
+     
+    </script>      
+    
+    
+</apex:page>

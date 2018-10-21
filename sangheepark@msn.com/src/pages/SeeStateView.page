@@ -1,0 +1,7 @@
+<apex:page showHeader="false" standardStylesheets="false">
+	<apex:form >
+    	<apex:pageBlock >
+        	<apex:outputText >Hello World</apex:outputText>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

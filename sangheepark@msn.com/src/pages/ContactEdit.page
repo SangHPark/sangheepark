@@ -1,0 +1,26 @@
+<apex:page standardController="Contact" >
+    <apex:form >
+        <apex:pageBlock title="{!if($CurrentPage.parameters.Id==null, 'Create Contact', 'Edit Contact')}">
+            <apex:pageBlockButtons location="top" >
+                <apex:commandButton value="SAVE" action="{!save}"/>
+                <apex:commandButton value="CANCEL" action="{!cancel}"/>                
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Detail">
+                <apex:inputField value="{!contact.firstname}"/>
+                <apex:inputField value="{!contact.lastname}"/>
+                <apex:inputField value="{!contact.accountid}"/>
+                <apex:inputField value="{!contact.title}"/>
+                <apex:inputField value="{!contact.leadsource}"/>
+                <apex:inputField value="{!contact.Level__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Contact Info">
+                <apex:inputField value="{!contact.phone}"/>
+                <apex:inputField value="{!contact.mobilephone}"/>
+                <apex:inputField value="{!contact.fax}"/>
+                <apex:inputField value="{!contact.email}"/>                  
+            </apex:pageBlockSection>
+            
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

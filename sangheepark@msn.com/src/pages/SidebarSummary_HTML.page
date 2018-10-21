@@ -1,0 +1,29 @@
+<apex:page controller="SideBarSummaryController" standardStylesheets="false" showHeader="false" sidebar="false">
+    <html>
+        <head>
+            <style>
+                body {
+                    background-color: #FFF656;
+                    font-family: arial, Helvetica, sans-serid;
+                    font-size :12px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+                
+                .alignLeft {
+                    text-align: left;
+                }    
+            </style>
+        </head>
+        <body>
+            <h2>Opportunity Stages</h2>
+        
+            <apex:dataTable cellpadding="3" cellspacing="3" value="{!oppstage}" var="stage">
+                <apex:column value="{!stage}" headerValue="Stage"/>
+                <apex:column value="{!oppStage[Stage]}" headerValue="# Opps"/>
+            </apex:dataTable>
+        </body>
+    
+    </html>
+        
+</apex:page>
