@@ -3,7 +3,7 @@ public with sharing class AccountController {
     public static List<Account> findAll() {
       //New comment to test GIT
      //Another change to test new branch made : myaccountprofile
-   
+     //Another change at home
         return [SELECT Id, Name, Location__Latitude__s, Location__Longitude__s, owner, AccountNumber
                 FROM Account
                 WHERE Location__Latitude__s != NULL AND Location__Longitude__s != NULL
